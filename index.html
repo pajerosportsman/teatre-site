@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Театр "Гармония"</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-black text-white py-6">
+    <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+      <h1 class="text-3xl font-bold">Театр "Гармония"</h1>
+      <nav class="space-x-6">
+        <a href="#events" class="hover:text-red-400">Мероприятия</a>
+        <a href="#schedule" class="hover:text-red-400">Расписание</a>
+        <a href="#gift" class="hover:text-red-400">Сертификат</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="bg-cover bg-center h-96 flex items-center justify-center text-white"
+           style="background-image: url('https://images.unsplash.com/photo-1503095396549-807759245b35');">
+    <div class="bg-black bg-opacity-60 p-8 rounded-xl text-center">
+      <h2 class="text-4xl font-bold mb-4">Добро пожаловать в мир искусства</h2>
+      <p class="text-lg">Лучшие спектакли и постановки сезона</p>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section id="events" class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold mb-10 text-center">Ближайшие мероприятия</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      
+      <!-- Event Card -->
+      <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
+        <h3 class="text-xl font-semibold mb-2">Ромео и Джульетта</h3>
+        <p class="text-gray-600 mb-4">25 марта, 19:00</p>
+        <p class="flex-grow">Классическая трагедия о любви в современной интерпретации.</p>
+        <button class="mt-6 bg-red-600 text-white py-2 rounded-xl hover:bg-red-700 transition">
+          Выбрать билет
+        </button>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
+        <h3 class="text-xl font-semibold mb-2">Гамлет</h3>
+        <p class="text-gray-600 mb-4">28 марта, 18:30</p>
+        <p class="flex-grow">Захватывающая постановка великой трагедии Шекспира.</p>
+        <button class="mt-6 bg-red-600 text-white py-2 rounded-xl hover:bg-red-700 transition">
+          Выбрать билет
+        </button>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
+        <h3 class="text-xl font-semibold mb-2">Щелкунчик</h3>
+        <p class="text-gray-600 mb-4">2 апреля, 17:00</p>
+        <p class="flex-grow">Балет для всей семьи с волшебной атмосферой.</p>
+        <button class="mt-6 bg-red-600 text-white py-2 rounded-xl hover:bg-red-700 transition">
+          Выбрать билет
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Schedule -->
+  <section id="schedule" class="bg-white py-16">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-8 text-center">Расписание работы площадки</h2>
+      <div class="bg-gray-100 rounded-2xl shadow p-8">
+        <ul class="space-y-4 text-lg">
+          <li class="flex justify-between">
+            <span>Понедельник – Пятница</span>
+            <span>10:00 – 22:00</span>
+          </li>
+          <li class="flex justify-between">
+            <span>Суббота</span>
+            <span>12:00 – 23:00</span>
+          </li>
+          <li class="flex justify-between">
+            <span>Воскресенье</span>
+            <span>12:00 – 20:00</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gift Certificate -->
+  <section id="gift" class="py-16">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="bg-red-600 text-white rounded-2xl p-10 text-center shadow-xl">
+        <h2 class="text-3xl font-bold mb-4">Подарочный сертификат</h2>
+        <p class="mb-6 text-lg">
+          Подарите близким незабываемые эмоции — выберите номинал сертификата и оформите покупку онлайн.
+        </p>
+        <button class="bg-white text-red-600 font-semibold py-3 px-6 rounded-xl hover:bg-gray-200 transition">
+          Купить сертификат
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-6 text-center">
+    <p>© 2026 Театр "Гармония". Все права защищены.</p>
+  </footer>
+
+</body>
+</html>

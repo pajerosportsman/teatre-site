@@ -3,23 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Театр "Гармония"</title>
+  <title>Театр "Гармония" | Новый виджет</title>
   <script src="https://cdn.tailwindcss.com"></script>
+// После загрузки скрипта будет доступен глобальный объект widgetManager
+<script
+  widget-key="563aa974-9fcc-4e35-aaac-ba3efaa8aec7"
+  src="https://afisha.ru/w/afishaWidgetManager.global.js"
+></script>
+
 </head>
 <body class="bg-gray-100 text-gray-800">
 
   <!-- Header -->
-  <header class="bg-black text-white py-6">
-    <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
-      <h1 class="text-3xl font-bold">Театр "Гармония"</h1>
-      <nav class="space-x-6">
-        <a href="#events" class="hover:text-red-400">Мероприятия</a>
-        <a href="#schedule" class="hover:text-red-400">Расписание</a>
-        <a href="#gift" class="hover:text-red-400">Сертификат</a>
-      </nav>
-    </div>
-  </header>
+  <header class="bg-black text-white">
 
+    <!-- Верхняя строка — выбор виджета -->
+    <div class="border-b border-gray-700">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap gap-6 text-sm justify-center md:justify-end">
+        <span class="text-gray-400 uppercase tracking-wide">Выбор виджета:</span>
+        <a href="/" class="hover:text-yellow-400 transition font-semibold">Новый виджет</a>
+        <a href="/old_widget" class="hover:text-yellow-400 transition">Старый виджет</a>
+      </div>
+    </div>
+
+    <!-- Нижняя строка — основное меню сайта -->
+    <div>
+      <div class="max-w-6xl mx-auto px-4 py-6 flex justify-between items-center">
+        <h1 class="text-3xl font-bold">Театр "Гармония"</h1>
+        
+        <nav class="flex flex-wrap gap-6 text-sm md:text-base">
+          <a href="#events" class="hover:text-red-400 transition">Мероприятия</a>
+          <a href="#schedule" class="hover:text-red-400 transition">Расписание</a>
+          <a href="#gift" class="hover:text-red-400 transition">Сертификат</a>
+        </nav>
+      </div>
+    </div>
+
+  </header>
   <!-- Hero -->
   <section class="bg-cover bg-center h-96 flex items-center justify-center text-white"
            style="background-image: url('https://images.unsplash.com/photo-1503095396549-807759245b35');">

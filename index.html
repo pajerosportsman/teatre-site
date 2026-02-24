@@ -22,14 +22,14 @@
       <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap gap-6 text-sm justify-center md:justify-end">
         <span class="text-gray-400 uppercase tracking-wide">Выбор виджета:</span>
         <a href="/" class="hover:text-yellow-400 transition font-semibold">Новый виджет</a>
-        <a href="/old_widget" class="hover:text-yellow-400 transition">Старый виджет</a>
+        <a href="/old_widget.html" class="hover:text-yellow-400 transition">Старый виджет</a>
       </div>
     </div>
 
     <!-- Нижняя строка — основное меню сайта -->
     <div>
       <div class="max-w-6xl mx-auto px-4 py-6 flex justify-between items-center">
-        <h1 class="text-3xl font-bold">Театр "Гармония"</h1>
+        <h1 class="text-3xl font-bold">Театр "Гармония" | Новый виджет</h1>
         
         <nav class="flex flex-wrap gap-6 text-sm md:text-base">
           <a href="#events" class="hover:text-red-400 transition">Мероприятия</a>
@@ -57,11 +57,14 @@
       <!-- Event Card -->
       <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
         <h3 class="text-xl font-semibold mb-2">Ромео и Джульетта</h3>
-        <p class="text-gray-600 mb-4">25 марта, 19:00</p>
         <p class="flex-grow">Классическая трагедия о любви в современной интерпретации.</p>
-        <button class="mt-6 bg-red-600 text-white py-2 rounded-xl hover:bg-red-700 transition">
-          Выбрать билет
-        </button>
+        <a-widget
+  route="creation"
+  embed-type="modal"
+  creation-type="performance"
+  creation-id="45087406"
+  city-id="2"
+></a-widget>
       </div>
 
       <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
@@ -88,23 +91,8 @@
   <!-- Schedule -->
   <section id="schedule" class="bg-white py-16">
     <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-8 text-center">Расписание работы площадки</h2>
-      <div class="bg-gray-100 rounded-2xl shadow p-8">
-        <ul class="space-y-4 text-lg">
-          <li class="flex justify-between">
-            <span>Понедельник – Пятница</span>
-            <span>10:00 – 22:00</span>
-          </li>
-          <li class="flex justify-between">
-            <span>Суббота</span>
-            <span>12:00 – 23:00</span>
-          </li>
-          <li class="flex justify-between">
-            <span>Воскресенье</span>
-            <span>12:00 – 20:00</span>
-          </li>
-        </ul>
-      </div>
+      <h2 class="text-3xl font-bold mb-8 text-center">Полное расписание площадки</h2>
+      <a-widget route="sessions" embed-type="inline" city-id="2"></a-widget>
     </div>
   </section>
 

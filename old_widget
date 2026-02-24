@@ -3,13 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Театр "Гармония" | Новый виджет</title>
+  <title>Театр "Гармония"</title>
   <script src="https://cdn.tailwindcss.com"></script>
-// После загрузки скрипта будет доступен глобальный объект widgetManager
-<script
-  widget-key="563aa974-9fcc-4e35-aaac-ba3efaa8aec7"
-  src="https://afisha.ru/w/afishaWidgetManager.global.js"
-></script>
+<script type="text/javascript">
+    (function (d, w) {
+        d.addEventListener("DOMContentLoaded", function () {
+            var script = document.createElement('script')
+            script.type = 'text/javascript'
+            script.src = 'https://www.afisha.ru/wl/embed/entry.js?v=' + Date.now()
+            script.async = true
+            script.onload = function () {
+                w.afishaInit(function () {
+                    w.afishaWidget = new AfishaWidget(id_partner, view_mode) <!-- [id партнера] [Вид (view_mode): ('events' или 'shows')] -->
+                })
+            }
+            document.head.appendChild(script)
+        }, false)
+    })(document, window)
+</script>
 
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -22,7 +33,7 @@
       <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap gap-6 text-sm justify-center md:justify-end">
         <span class="text-gray-400 uppercase tracking-wide">Выбор виджета:</span>
         <a href="/" class="hover:text-yellow-400 transition font-semibold">Новый виджет</a>
-        <a href="/old_widget" class="hover:text-yellow-400 transition">Старый виджет</a>
+        <a href="" class="hover:text-yellow-400 transition">Старый виджет</a>
       </div>
     </div>
 

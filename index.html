@@ -299,12 +299,18 @@ function openSession(session_id) {
   }, document.body);
 }
 
-// Открывает расписание спектакля напрямую по URL-шаблону из документации:
-// https://www.afisha.ru/w/creations/{creationType}/{creationId}/{widgetKey}/{hostURL}?embedType=modal
-function openMoreDates(moreDates) {
-  const hostURL = encodeURIComponent(location.href);
-  const url = 'https://www.afisha.ru/w/creations/performance/' + moreDates.creation_id + '/' + WIDGET_KEY + '/' + hostURL + '?embedType=modal';
-  widgetManager.modalWidget.open(url);
+// Открывает расписание спектакля через constructWidgetURL согласно документации Афиши.
+// Результирующий URL: https://www.afisha.ru/w/creations/performance/{creationId}/{cityId}/{widgetKey}/{hostURL}?embedType=modal
+async function openMoreDates(moreDates) {
+  const { urlHandler } = widgetManager;
+  const url = await urlHandler.constructWidgetURL({
+    route: 'creations',
+    embedType: 'modal',
+    cityId: '2',
+    creationType: 'performance',
+    creationId: moreDates.creation_id,
+  });
+  window.open(url.href, '_blank');
 }
 
 function buildDateBtn(date) {

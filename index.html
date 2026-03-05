@@ -59,7 +59,6 @@
 </head>
 <body class="bg-gray-100 text-gray-800">
 
-
   <!-- Header -->
   <header class="bg-black text-white">
     <div class="border-b border-gray-700">
@@ -82,7 +81,6 @@
     </div>
   </header>
 
-
   <!-- Hero -->
   <section class="bg-cover bg-center h-96 flex items-center justify-center text-white" style="background-image: url('https://images.unsplash.com/photo-1503095396549-807759245b35');">
     <div class="bg-black bg-opacity-60 p-8 rounded-xl text-center">
@@ -91,7 +89,6 @@
       <a-widget route="sessions" embed-type="modal" city-id="2"></a-widget>
     </div>
   </section>
-
 
   <!-- Events / Afisha -->
   <section id="events" class="max-w-6xl mx-auto px-4 py-16">
@@ -120,7 +117,6 @@
     </div>
   </section>
 
-
   <!-- Repertoire -->
   <section id="schedule" class="bg-white py-16">
     <div class="max-w-6xl mx-auto px-4">
@@ -129,7 +125,6 @@
       <div id="repertoire-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
     </div>
   </section>
-
 
   <!-- Gift Certificate -->
   <section id="gift" class="py-16">
@@ -146,12 +141,10 @@
     </div>
   </section>
 
-
   <!-- Footer -->
   <footer class="bg-black text-white py-6 text-center">
     <p>© 2026 Театр "Гармония". Все права защищены.</p>
   </footer>
-
 
 <script>
 // =============================================================================
@@ -172,9 +165,9 @@ const SHOWS = [
       { label: "29 мар", time: "19:00", session_id: "126955888" },
     ],
     moreDates: {
-      creationId:   "45087406",
+      creationId: "45087406",
       creationType: "performance",
-      cityId:       "2",
+      cityId: "2",
     },
   },
   {
@@ -187,9 +180,8 @@ const SHOWS = [
     status: "active",
     dates: [
       { label: "28 мар", time: "18:30", session_id: null },
-      { label: "5 апр",  time: "19:00", session_id: null },
+      { label: "5 апр", time: "19:00", session_id: null },
     ],
-    moreDates: null,
   },
   {
     title: "Щелкунчик",
@@ -203,7 +195,6 @@ const SHOWS = [
       { label: "2 апр", time: "17:00", session_id: null },
       { label: "3 апр", time: "14:00", session_id: null },
     ],
-    moreDates: null,
   },
   {
     title: "Вишнёвый сад",
@@ -216,7 +207,6 @@ const SHOWS = [
     dates: [
       { label: "10 апр", time: "19:00", session_id: null },
     ],
-    moreDates: null,
   },
   {
     title: "Ревизор",
@@ -239,7 +229,6 @@ const SHOWS = [
   },
 ];
 
-
 // =============================================================================
 // РЕНДЕР
 // =============================================================================
@@ -256,22 +245,28 @@ const TAG_STYLES = {
 };
 
 function openSession(session_id) {
-  widgetManager.appendWidget({
-    widgetKey: WIDGET_KEY,
-    route: 'session',
-    embedType: 'modal',
-    sessionId: session_id,
-  }, document.body);
+  if (session_id && widgetManager) {
+    widgetManager.appendWidget({
+      widgetKey: WIDGET_KEY,
+      route: 'session',
+      embedType: 'modal',
+      sessionId: session_id,
+    }, document.body);
+  }
 }
 
-// Открывает расписание спектакля через constructWidgetURL согласно документации Афиши.
+// ✅ ИСПРАВЛЕННАЯ ФУНКЦИЯ — используем строковые значения вместо ROUTES/EMBED_TYPES
 async function openMoreDates(moreDates) {
-  const { urlHandler, ROUTES, EMBED_TYPES } = widgetManager;
+  if (!widgetManager || !moreDates) {
+    console.error('widgetManager или moreDates недоступны');
+    return;
+  }
 
   try {
+    const { urlHandler } = widgetManager;
     const url = await urlHandler.constructWidgetURL({
-      route: ROUTES.creations,
-      embedType: EMBED_TYPES.modal,
+      route: 'creations',        // ✅ строка вместо ROUTES.creations
+      embedType: 'modal',        // ✅ строка вместо EMBED_TYPES.modal  
       cityId: moreDates.cityId,
       creationType: moreDates.creationType,
       creationId: moreDates.creationId,
@@ -288,6 +283,8 @@ function buildDateBtn(date) {
   btn.innerHTML = `${date.label} <span class="time">${date.time}</span>`;
   if (date.session_id) {
     btn.onclick = () => openSession(date.session_id);
+  } else {
+    btn.onclick = () => alert('Билеты скоро в продаже');
   }
   return btn;
 }
@@ -302,6 +299,8 @@ function buildMoreDatesBtn(moreDates) {
 
 function renderShows() {
   const grid = document.getElementById('repertoire-grid');
+  if (!grid) return;
+  
   grid.innerHTML = '';
 
   SHOWS.forEach(show => {
@@ -362,7 +361,7 @@ function renderShows() {
 
     if (show.status === 'active') {
       const datesRow = document.createElement('div');
-      datesRow.className = 'flex flex-wrap gap-2';
+      datesRow.className = 'flex flex-wrap gap-2 mb-4';
       (show.dates || []).forEach(d => datesRow.appendChild(buildDateBtn(d)));
       if (show.moreDates) datesRow.appendChild(buildMoreDatesBtn(show.moreDates));
       body.appendChild(datesRow);
@@ -390,10 +389,17 @@ function renderShows() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', renderShows);
-</script>
+// Ждём полной загрузки виджета
+function init() {
+  if (typeof widgetManager !== 'undefined') {
+    renderShows();
+  } else {
+    setTimeout(init, 100);
+  }
+}
 
+document.addEventListener('DOMContentLoaded', init);
+</script>
 
 </body>
 </html>
-ы

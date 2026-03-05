@@ -147,10 +147,6 @@
   </footer>
 
 <script>
-// =============================================================================
-// РЕПЕРТУАР — РЕДАКТИРУЙТЕ ЗДЕСЬ
-// =============================================================================
-
 const SHOWS = [
   {
     title: "Ромео и Джульетта",
@@ -229,10 +225,6 @@ const SHOWS = [
   },
 ];
 
-// =============================================================================
-// РЕНДЕР
-// =============================================================================
-
 const WIDGET_KEY = '563aa974-9fcc-4e35-aaac-ba3efaa8aec7';
 
 const TAG_STYLES = {
@@ -255,7 +247,7 @@ function openSession(session_id) {
   }
 }
 
-// ✅ ИСПРАВЛЕННАЯ ФУНКЦИЯ — используем строковые значения вместо ROUTES/EMBED_TYPES
+// ИСПРАВЛЕНО: используем appendWidget с route: 'creation' вместо constructWidgetURL с route: 'creations'
 async function openMoreDates(moreDates) {
   if (!widgetManager || !moreDates) {
     console.error('widgetManager или moreDates недоступны');
@@ -263,15 +255,14 @@ async function openMoreDates(moreDates) {
   }
 
   try {
-    const { urlHandler } = widgetManager;
-    const url = await urlHandler.constructWidgetURL({
-      route: 'creations',        // ✅ строка вместо ROUTES.creations
-      embedType: 'modal',        // ✅ строка вместо EMBED_TYPES.modal  
+    await widgetManager.appendWidget({
+      widgetKey: WIDGET_KEY,
+      route: 'creation',
+      embedType: 'modal',
       cityId: moreDates.cityId,
       creationType: moreDates.creationType,
       creationId: moreDates.creationId,
-    });
-    window.open(url.href, '_blank');
+    }, document.body);
   } catch (err) {
     console.error('Ошибка при открытии расписания спектакля:', err);
   }
@@ -310,7 +301,6 @@ function renderShows() {
     const card = document.createElement('div');
     card.className = 'show-card bg-white rounded-2xl shadow-md overflow-hidden flex flex-col border border-gray-100';
 
-    // Image block
     const imgWrap = document.createElement('div');
     imgWrap.className = 'relative';
 
@@ -344,7 +334,6 @@ function renderShows() {
       imgWrap.appendChild(pauseBadge);
     }
 
-    // Body
     const body = document.createElement('div');
     body.className = 'p-5 flex flex-col flex-grow';
 
@@ -389,7 +378,6 @@ function renderShows() {
   });
 }
 
-// Ждём полной загрузки виджета
 function init() {
   if (typeof widgetManager !== 'undefined') {
     renderShows();

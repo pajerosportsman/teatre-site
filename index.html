@@ -59,6 +59,7 @@
 </head>
 <body class="bg-gray-100 text-gray-800">
 
+
   <!-- Header -->
   <header class="bg-black text-white">
     <div class="border-b border-gray-700">
@@ -81,6 +82,7 @@
     </div>
   </header>
 
+
   <!-- Hero -->
   <section class="bg-cover bg-center h-96 flex items-center justify-center text-white" style="background-image: url('https://images.unsplash.com/photo-1503095396549-807759245b35');">
     <div class="bg-black bg-opacity-60 p-8 rounded-xl text-center">
@@ -89,6 +91,7 @@
       <a-widget route="sessions" embed-type="modal" city-id="2"></a-widget>
     </div>
   </section>
+
 
   <!-- Events / Afisha -->
   <section id="events" class="max-w-6xl mx-auto px-4 py-16">
@@ -117,6 +120,7 @@
     </div>
   </section>
 
+
   <!-- Repertoire -->
   <section id="schedule" class="bg-white py-16">
     <div class="max-w-6xl mx-auto px-4">
@@ -125,6 +129,7 @@
       <div id="repertoire-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
     </div>
   </section>
+
 
   <!-- Gift Certificate -->
   <section id="gift" class="py-16">
@@ -141,51 +146,16 @@
     </div>
   </section>
 
+
   <!-- Footer -->
   <footer class="bg-black text-white py-6 text-center">
     <p>© 2026 Театр "Гармония". Все права защищены.</p>
   </footer>
 
+
 <script>
 // =============================================================================
 // РЕПЕРТУАР — РЕДАКТИРУЙТЕ ЗДЕСЬ
-// =============================================================================
-//
-// Каждый спектакль — объект со следующими полями:
-//
-//   title       — название спектакля
-//   description — короткое описание
-//   image       — URL картинки
-//   tag         — жанр (отображается сверху слева на карточке)
-//   tagStyle    — цвет тега, одно из: "red" | "purple" | "blue" | "green" | "yellow" | "pink"
-//   age         — возрастное ограничение, например "16+", "0+", "18+"
-//   status      — "active" | "soon" | "paused"
-//                   active — показываются кнопки с датами
-//                   soon   — показывается надпись «Премьера — ...»
-//                   paused — карточка в серых тонах, надпись «Снят с репертуара»
-//
-//   soonText    — (только для status: "soon") текст под карточкой, например "Премьера — май 2026"
-//
-//   dates       — массив сеансов (только для status: "active"):
-//     [
-//       {
-//         label:      "7 мар",       // отображаемая дата на кнопке
-//         time:       "19:00",       // время
-//         session_id: "126854211",   // sessionId для виджета (строка)
-//                                    // если не нужен — можно убрать или оставить null
-//       },
-//       ...
-//     ]
-//
-//   moreDates   — (опционально) объект для кнопки «ещё даты →»:
-//     {
-//       creationId:   "45087406",    // id спектакля на Афише
-//       creationType: "performance", // тип события (обычно "performance")
-//       cityId:       "2",           // id города
-//     }
-//     Открывает расписание спектакля через constructWidgetURL (документация Афиши).
-//     Если кнопка «ещё даты» не нужна — уберите поле moreDates совсем.
-//
 // =============================================================================
 
 const SHOWS = [
@@ -198,12 +168,6 @@ const SHOWS = [
     age: "16+",
     status: "active",
     dates: [
-      //{ label: "7 мар",  time: "19:00", session_id: "126937929" },
-      //{ label: "8 мар",  time: "19:00", session_id: "126955882" },
-      //{ label: "14 мар",  time: "19:00", session_id: "126955883" },
-      //{ label: "15 мар",  time: "19:00", session_id: "126955884" },
-      //{ label: "21 мар",  time: "19:00", session_id: "126955885" },
-      //{ label: "22 мар",  time: "19:00", session_id: "126955886" },
       { label: "28 мар", time: "19:00", session_id: "126955887" },
       { label: "29 мар", time: "19:00", session_id: "126955888" },
     ],
@@ -275,8 +239,9 @@ const SHOWS = [
   },
 ];
 
+
 // =============================================================================
-// РЕНДЕР — не нужно редактировать ниже
+// РЕНДЕР
 // =============================================================================
 
 const WIDGET_KEY = '563aa974-9fcc-4e35-aaac-ba3efaa8aec7';
@@ -300,17 +265,21 @@ function openSession(session_id) {
 }
 
 // Открывает расписание спектакля через constructWidgetURL согласно документации Афиши.
-// Результирующий URL: https://www.afisha.ru/w/creations/performance/{creationId}/{cityId}/{widgetKey}/{hostURL}?embedType=modal
 async function openMoreDates(moreDates) {
-  const { urlHandler } = widgetManager;
-  const url = await urlHandler.constructWidgetURL({
-    route: 'creations',
-    embedType: 'modal',
-    cityId: '2',
-    creationType: 'performance',
-    creationId: moreDates.creation_id,
-  });
-  window.open(url.href, '_blank');
+  const { urlHandler, ROUTES, EMBED_TYPES } = widgetManager;
+
+  try {
+    const url = await urlHandler.constructWidgetURL({
+      route: ROUTES.creations,
+      embedType: EMBED_TYPES.modal,
+      cityId: moreDates.cityId,
+      creationType: moreDates.creationType,
+      creationId: moreDates.creationId,
+    });
+    window.open(url.href, '_blank');
+  } catch (err) {
+    console.error('Ошибка при открытии расписания спектакля:', err);
+  }
 }
 
 function buildDateBtn(date) {
@@ -424,5 +393,7 @@ function renderShows() {
 document.addEventListener('DOMContentLoaded', renderShows);
 </script>
 
+
 </body>
 </html>
+ы

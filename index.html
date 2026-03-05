@@ -195,16 +195,16 @@ const SHOWS = [
     age: "16+",
     status: "active",
     dates: [
-      { label: "7 мар",  time: "19:00", session_id: "126937929" },
-      { label: "8 мар",  time: "19:00", session_id: "126955882" },
-      { label: "14 мар",  time: "19:00", session_id: "126955883" },
-      { label: "15 мар",  time: "19:00", session_id: "126955884" },
-      { label: "21 мар",  time: "19:00", session_id: "126955885" },
-      { label: "22 мар",  time: "19:00", session_id: "126955886" },
+      //{ label: "7 мар",  time: "19:00", session_id: "126937929" },
+      //{ label: "8 мар",  time: "19:00", session_id: "126955882" },
+      //{ label: "14 мар",  time: "19:00", session_id: "126955883" },
+      //{ label: "15 мар",  time: "19:00", session_id: "126955884" },
+      //{ label: "21 мар",  time: "19:00", session_id: "126955885" },
+      //{ label: "22 мар",  time: "19:00", session_id: "126955886" },
       { label: "28 мар",  time: "19:00", session_id: "126955887" },
       { label: "29 мар",  time: "19:00", session_id: "126955888" },
     ],
-    moreDates: { route: "sessions" },
+    moreDates: { route: "45087406" },
   },
   {
     title: "Гамлет",
@@ -295,7 +295,8 @@ function openSession(session_id) {
 function openSessions() {
   widgetManager.appendWidget({
     widgetKey: WIDGET_KEY,
-    route: 'sessions',
+    route: 'creations',
+    creationType: 'performance',
     embedType: 'modal',
   }, document.body);
 }

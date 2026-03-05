@@ -5,18 +5,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Театр "Афишинг" | Новый виджет</title>
   <script src="https://cdn.tailwindcss.com"></script>
-<script
-  widget-key="563aa974-9fcc-4e35-aaac-ba3efaa8aec7"
-  src="https://afisha.ru/w/afishaWidgetManager.global.js"
-></script>
-
+  <script
+    widget-key="563aa974-9fcc-4e35-aaac-ba3efaa8aec7"
+    src="https://afisha.ru/w/afishaWidgetManager.global.js"
+  ></script>
+  <style>
+    .show-card { transition: box-shadow 0.2s, transform 0.2s; }
+    .show-card:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.13); transform: translateY(-3px); }
+    .date-btn {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 6px 14px;
+      border: 1.5px solid #dc2626;
+      border-radius: 10px;
+      color: #dc2626;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: white;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+      line-height: 1.3;
+    }
+    .date-btn:hover { background: #dc2626; color: white; }
+    .date-btn span.time { font-size: 0.72rem; font-weight: 400; opacity: 0.85; }
+    .more-dates-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      border: 1.5px solid #6b7280;
+      border-radius: 10px;
+      color: #6b7280;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: white;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    .more-dates-btn:hover { background: #6b7280; color: white; }
+    .tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .card-img { width: 100%; height: 200px; object-fit: cover; }
+  </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
 
   <!-- Header -->
   <header class="bg-black text-white">
-
-    <!-- Верхняя строка — выбор виджета -->
     <div class="border-b border-gray-700">
       <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap gap-6 text-sm justify-center md:justify-end">
         <span class="text-gray-400 uppercase tracking-wide">Выбор виджета:</span>
@@ -24,24 +68,21 @@
         <a href="/old_widget.html" class="hover:text-yellow-400 transition">Старый виджет</a>
       </div>
     </div>
-
-    <!-- Нижняя строка — основное меню сайта -->
     <div>
       <div class="max-w-6xl mx-auto px-4 py-6 flex justify-between items-center">
         <h1 class="text-3xl font-bold">Театр "Афишинг" | Новый виджет</h1>
-        
         <nav class="flex flex-wrap gap-6 text-sm md:text-base">
-          <a href="#events" class="hover:text-red-400 transition">Афига</a>
+          <a href="#events" class="hover:text-red-400 transition">Афиша</a>
           <a href="#schedule" class="hover:text-red-400 transition">Репертуар</a>
           <a href="#gift" class="hover:text-red-400 transition">Сертификат</a>
           <a href="/refund.html" class="hover:text-red-400 transition">Возврат билета</a>
         </nav>
       </div>
     </div>
-
   </header>
+
   <!-- Hero -->
-<section class="bg-cover bg-center h-96 flex items-center justify-center text-white" style="background-image: url('https://images.unsplash.com/photo-1503095396549-807759245b35');">
+  <section class="bg-cover bg-center h-96 flex items-center justify-center text-white" style="background-image: url('https://images.unsplash.com/photo-1503095396549-807759245b35');">
     <div class="bg-black bg-opacity-60 p-8 rounded-xl text-center">
       <h2 class="text-4xl font-bold mb-4">Билеты в театр Афишинг</h2>
       <p class="text-lg mb-4">Афиша спектаклей 2026 - 2027</p>
@@ -49,47 +90,39 @@
     </div>
   </section>
 
-  <!-- Events -->
+  <!-- Events / Afisha -->
   <section id="events" class="max-w-6xl mx-auto px-4 py-16">
     <h2 class="text-3xl font-bold mb-10 text-center">Ближайшие мероприятия</h2>
     <div class="grid md:grid-cols-3 gap-8">
-      
-      <!-- Event Card -->
       <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
         <h3 class="text-xl font-semibold mb-2">Ромео и Джульетта</h3>
         <p class="text-gray-600 mb-4">7 марта, 19:00</p>
         <p class="flex-grow">Классическая трагедия о любви в современной интерпретации.</p>
-<<a class="mt-6 block w-full text-center bg-red-600 text-white py-2 rounded-xl hover:bg-red-700 transition" href="javascript:widgetManager.appendWidget({widgetKey: '563aa974-9fcc-4e35-aaac-ba3efaa8aec7', route: 'session', embedType: 'modal', sessionId: '126854211'}, document.body);">
-  Выбрать место
-</a>
+        <a class="mt-6 block w-full text-center bg-red-600 text-white py-2 rounded-xl hover:bg-red-700 transition" href="javascript:widgetManager.appendWidget({widgetKey: '563aa974-9fcc-4e35-aaac-ba3efaa8aec7', route: 'session', embedType: 'modal', sessionId: '126854211'}, document.body);">
+          Выбрать место
+        </a>
       </div>
-
       <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
         <h3 class="text-xl font-semibold mb-2">Гамлет</h3>
         <p class="text-gray-600 mb-4">28 марта, 18:30</p>
         <p class="flex-grow">Захватывающая постановка великой трагедии Шекспира.</p>
-        <button class="mt-6 bg-red-600 text-white py-2 rounded-xl hover:bg-red-700 transition">
-          Выбрать место
-        </button>
+        <button class="mt-6 bg-red-600 text-white py-2 rounded-xl hover:bg-red-700 transition">Выбрать место</button>
       </div>
-
       <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
         <h3 class="text-xl font-semibold mb-2">Щелкунчик</h3>
         <p class="text-gray-600 mb-4">2 апреля, 17:00</p>
         <p class="flex-grow">Балет для всей семьи с волшебной атмосферой.</p>
-        <button class="mt-6 bg-red-600 text-white py-2 rounded-xl hover:bg-red-700 transition">
-          Выбрать место
-        </button>
+        <button class="mt-6 bg-red-600 text-white py-2 rounded-xl hover:bg-red-700 transition">Выбрать место</button>
       </div>
-
     </div>
   </section>
 
-  <!-- Schedule -->
+  <!-- Repertoire -->
   <section id="schedule" class="bg-white py-16">
     <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-8 text-center">Полное расписание площадки</h2>
-      <a-widget route="sessions" embed-type="inline" city-id="2"></a-widget>
+      <h2 class="text-3xl font-bold mb-2 text-center">Репертуар</h2>
+      <p class="text-gray-500 text-center mb-10">Все постановки нашего театра</p>
+      <div id="repertoire-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
     </div>
   </section>
 
@@ -112,6 +145,265 @@
   <footer class="bg-black text-white py-6 text-center">
     <p>© 2026 Театр "Гармония". Все права защищены.</p>
   </footer>
+
+<script>
+// =============================================================================
+// РЕПЕРТУАР — РЕДАКТИРУЙТЕ ЗДЕСЬ
+// =============================================================================
+//
+// Каждый спектакль — объект со следующими полями:
+//
+//   title       — название спектакля
+//   description — короткое описание
+//   image       — URL картинки
+//   tag         — жанр (отображается сверху слева на карточке)
+//   tagStyle    — цвет тега, одно из: "red" | "purple" | "blue" | "green" | "yellow" | "pink"
+//   age         — возрастное ограничение, например "16+", "0+", "18+"
+//   status      — "active" | "soon" | "paused"
+//                   active — показываются кнопки с датами
+//                   soon   — показывается надпись «Премьера — ...»
+//                   paused — карточка в серых тонах, надпись «Снят с репертуара»
+//
+//   soonText    — (только для status: "soon") текст под карточкой, например "Премьера — май 2026"
+//
+//   dates       — массив сеансов (только для status: "active"):
+//     [
+//       {
+//         label:      "7 мар",       // отображаемая дата на кнопке
+//         time:       "19:00",       // время
+//         session_id: "126854211",   // sessionId для нового виджета (строка)
+//                                    // если не нужен — можно убрать или оставить null
+//       },
+//       ...
+//     ]
+//
+//   moreDates   — (опционально) объект для кнопки «ещё даты →»:
+//     {
+//       route: "sessions"            // маршрут для нового виджета
+//     }
+//     Если не нужна кнопка «ещё даты» — уберите поле moreDates совсем.
+//
+// =============================================================================
+
+const SHOWS = [
+  {
+    title: "Ромео и Джульетта",
+    description: "Вечная история любви и рока в современной интерпретации. Шекспир, перенесённый в наши дни.",
+    image: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?w=600&q=80",
+    tag: "Трагедия",
+    tagStyle: "red",
+    age: "16+",
+    status: "active",
+    dates: [
+      { label: "7 мар",  time: "19:00", session_id: "126854211" },
+      { label: "8 мар",  time: "19:00", session_id: null },
+    ],
+    moreDates: { route: "sessions" },
+  },
+  {
+    title: "Гамлет",
+    description: "Быть или не быть — этот вопрос звучит со сцены с новой силой. Режиссёрская работа Андрея Крылова.",
+    image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&q=80",
+    tag: "Драма",
+    tagStyle: "purple",
+    age: "18+",
+    status: "active",
+    dates: [
+      { label: "28 мар", time: "18:30", session_id: null },
+      { label: "5 апр",  time: "19:00", session_id: null },
+    ],
+    moreDates: null,
+  },
+  {
+    title: "Щелкунчик",
+    description: "Волшебный балет Чайковского для всей семьи. Снежинки, феи и праздничная магия на каждом показе.",
+    image: "https://images.unsplash.com/photo-1547153760-18fc86324498?w=600&q=80",
+    tag: "Балет",
+    tagStyle: "blue",
+    age: "0+",
+    status: "active",
+    dates: [
+      { label: "2 апр",  time: "17:00", session_id: null },
+      { label: "3 апр",  time: "14:00", session_id: null },
+    ],
+    moreDates: null,
+  },
+  {
+    title: "Вишнёвый сад",
+    description: "Чехов на современной сцене. История об утрате, ностальгии и невозможности остановить время.",
+    image: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=600&q=80",
+    tag: "Комедия",
+    tagStyle: "green",
+    age: "12+",
+    status: "active",
+    dates: [
+      { label: "10 апр", time: "19:00", session_id: null },
+    ],
+    moreDates: null,
+  },
+  {
+    title: "Ревизор",
+    description: "Гоголь в новом прочтении. Острая сатира на бюрократию и человеческую глупость — актуальнее, чем когда-либо.",
+    image: "https://images.unsplash.com/photo-1585699324551-f6c309eedeca?w=600&q=80",
+    tag: "Сатира",
+    tagStyle: "yellow",
+    age: null,
+    status: "soon",
+    soonText: "Премьера — май 2026. Билеты скоро в продаже.",
+  },
+  {
+    title: "Три сестры",
+    description: "Тоска по Москве, несбыточные мечты и тихое отчаяние. Чехов, поставленный с безупречной точностью.",
+    image: "https://images.unsplash.com/photo-1571624436279-b272aff752b5?w=600&q=80",
+    tag: "Драма",
+    tagStyle: "pink",
+    age: null,
+    status: "paused",
+  },
+];
+
+// =============================================================================
+// РЕНДЕР — не нужно редактировать ниже
+// =============================================================================
+
+const WIDGET_KEY = '563aa974-9fcc-4e35-aaac-ba3efaa8aec7';
+
+const TAG_STYLES = {
+  red:    "bg-red-100 text-red-600",
+  purple: "bg-purple-100 text-purple-700",
+  blue:   "bg-blue-100 text-blue-700",
+  green:  "bg-green-100 text-green-700",
+  yellow: "bg-yellow-100 text-yellow-700",
+  pink:   "bg-pink-100 text-pink-700",
+};
+
+function openSession(session_id) {
+  widgetManager.appendWidget({
+    widgetKey: WIDGET_KEY,
+    route: 'session',
+    embedType: 'modal',
+    sessionId: session_id,
+  }, document.body);
+}
+
+function openSessions() {
+  widgetManager.appendWidget({
+    widgetKey: WIDGET_KEY,
+    route: 'sessions',
+    embedType: 'modal',
+  }, document.body);
+}
+
+function buildDateBtn(date) {
+  const btn = document.createElement('button');
+  btn.className = 'date-btn';
+  btn.innerHTML = `${date.label} <span class="time">${date.time}</span>`;
+  if (date.session_id) {
+    btn.onclick = () => openSession(date.session_id);
+  }
+  return btn;
+}
+
+function buildMoreDatesBtn() {
+  const btn = document.createElement('button');
+  btn.className = 'more-dates-btn';
+  btn.textContent = 'ещё даты →';
+  btn.onclick = () => openSessions();
+  return btn;
+}
+
+function renderShows() {
+  const grid = document.getElementById('repertoire-grid');
+  grid.innerHTML = '';
+
+  SHOWS.forEach(show => {
+    const isPaused = show.status === 'paused';
+    const isSoon   = show.status === 'soon';
+
+    const card = document.createElement('div');
+    card.className = 'show-card bg-white rounded-2xl shadow-md overflow-hidden flex flex-col border border-gray-100';
+
+    // Image block
+    const imgWrap = document.createElement('div');
+    imgWrap.className = 'relative';
+
+    const img = document.createElement('img');
+    img.className = 'card-img';
+    img.src = show.image;
+    img.alt = show.title;
+    if (isPaused) img.style.filter = 'grayscale(40%)';
+
+    const tagEl = document.createElement('span');
+    tagEl.className = `tag absolute top-3 left-3 ${TAG_STYLES[show.tagStyle] || ''}`;
+    tagEl.textContent = show.tag;
+
+    imgWrap.appendChild(img);
+    imgWrap.appendChild(tagEl);
+
+    if (show.age) {
+      const ageEl = document.createElement('span');
+      ageEl.className = 'tag absolute top-3 right-3 bg-gray-900 text-white';
+      ageEl.textContent = show.age;
+      imgWrap.appendChild(ageEl);
+    } else if (isSoon) {
+      const soonBadge = document.createElement('span');
+      soonBadge.className = 'tag absolute top-3 right-3 bg-amber-500 text-white';
+      soonBadge.textContent = 'Скоро';
+      imgWrap.appendChild(soonBadge);
+    } else if (isPaused) {
+      const pauseBadge = document.createElement('span');
+      pauseBadge.className = 'tag absolute top-3 right-3 bg-gray-400 text-white';
+      pauseBadge.textContent = 'Пауза';
+      imgWrap.appendChild(pauseBadge);
+    }
+
+    // Body
+    const body = document.createElement('div');
+    body.className = 'p-5 flex flex-col flex-grow';
+
+    const title = document.createElement('h3');
+    title.className = `text-lg font-bold mb-1${isPaused ? ' text-gray-400' : ''}`;
+    title.textContent = show.title;
+
+    const desc = document.createElement('p');
+    desc.className = `text-sm mb-4 flex-grow${isPaused ? ' text-gray-400' : ' text-gray-500'}`;
+    desc.textContent = show.description;
+
+    body.appendChild(title);
+    body.appendChild(desc);
+
+    if (show.status === 'active') {
+      const datesRow = document.createElement('div');
+      datesRow.className = 'flex flex-wrap gap-2';
+      (show.dates || []).forEach(d => datesRow.appendChild(buildDateBtn(d)));
+      if (show.moreDates) datesRow.appendChild(buildMoreDatesBtn());
+      body.appendChild(datesRow);
+    } else if (isSoon) {
+      const notice = document.createElement('div');
+      notice.className = 'flex items-center gap-2 mt-auto pt-1';
+      notice.innerHTML = `
+        <span class="inline-block w-2 h-2 rounded-full bg-amber-400 flex-shrink-0"></span>
+        <span class="text-sm text-gray-400 italic">${show.soonText || ''}</span>
+      `;
+      body.appendChild(notice);
+    } else if (isPaused) {
+      const notice = document.createElement('div');
+      notice.className = 'flex items-center gap-2 mt-auto pt-1';
+      notice.innerHTML = `
+        <span class="inline-block w-2 h-2 rounded-full bg-gray-300 flex-shrink-0"></span>
+        <span class="text-sm text-gray-400 italic">Спектакль временно снят с репертуара</span>
+      `;
+      body.appendChild(notice);
+    }
+
+    card.appendChild(imgWrap);
+    card.appendChild(body);
+    grid.appendChild(card);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', renderShows);
+</script>
 
 </body>
 </html>

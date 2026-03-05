@@ -171,7 +171,7 @@
 //       {
 //         label:      "7 мар",       // отображаемая дата на кнопке
 //         time:       "19:00",       // время
-//         session_id: "126854211",   // sessionId для нового виджета (строка)
+//         session_id: "126854211",   // sessionId для виджета (строка)
 //                                    // если не нужен — можно убрать или оставить null
 //       },
 //       ...
@@ -179,9 +179,12 @@
 //
 //   moreDates   — (опционально) объект для кнопки «ещё даты →»:
 //     {
-//       route: "sessions"            // маршрут для нового виджета
+//       creationId:   "45087406",    // id спектакля на Афише
+//       creationType: "performance", // тип события (обычно "performance")
+//       cityId:       "2",           // id города
 //     }
-//     Если не нужна кнопка «ещё даты» — уберите поле moreDates совсем.
+//     Открывает расписание спектакля через constructWidgetURL (документация Афиши).
+//     Если кнопка «ещё даты» не нужна — уберите поле moreDates совсем.
 //
 // =============================================================================
 
@@ -201,10 +204,14 @@ const SHOWS = [
       //{ label: "15 мар",  time: "19:00", session_id: "126955884" },
       //{ label: "21 мар",  time: "19:00", session_id: "126955885" },
       //{ label: "22 мар",  time: "19:00", session_id: "126955886" },
-      { label: "28 мар",  time: "19:00", session_id: "126955887" },
-      { label: "29 мар",  time: "19:00", session_id: "126955888" },
+      { label: "28 мар", time: "19:00", session_id: "126955887" },
+      { label: "29 мар", time: "19:00", session_id: "126955888" },
     ],
-    moreDates: { route: "45087406" },
+    moreDates: {
+      creationId:   "45087406",
+      creationType: "performance",
+      cityId:       "2",
+    },
   },
   {
     title: "Гамлет",
@@ -229,8 +236,8 @@ const SHOWS = [
     age: "0+",
     status: "active",
     dates: [
-      { label: "2 апр",  time: "17:00", session_id: null },
-      { label: "3 апр",  time: "14:00", session_id: null },
+      { label: "2 апр", time: "17:00", session_id: null },
+      { label: "3 апр", time: "14:00", session_id: null },
     ],
     moreDates: null,
   },
@@ -292,13 +299,19 @@ function openSession(session_id) {
   }, document.body);
 }
 
-function openSessions() {
-  widgetManager.appendWidget({
-    widgetKey: WIDGET_KEY,
-    route: 'creations',
-    creationType: 'performance',
-    embedType: 'modal',
-  }, document.body);
+// Открывает расписание спектакля через constructWidgetURL
+// Документация: https://dev.afisha.ru/afisha-widget-manager/constructWidgetURL.html
+// Маршрут "creations" — расписание события по creationId + creationType + cityId
+async function openMoreDates(moreDates) {
+  const { urlHandler } = widgetManager;
+  const url = await urlHandler.constructWidgetURL({
+    route:        'creations',
+    embedType:    'modal',
+    creationType: moreDates.creationType,
+    creationId:   moreDates.creationId,
+    cityId:       moreDates.cityId,
+  });
+  window.open(url.href, '_blank');
 }
 
 function buildDateBtn(date) {
@@ -311,11 +324,11 @@ function buildDateBtn(date) {
   return btn;
 }
 
-function buildMoreDatesBtn() {
+function buildMoreDatesBtn(moreDates) {
   const btn = document.createElement('button');
   btn.className = 'more-dates-btn';
   btn.textContent = 'ещё даты →';
-  btn.onclick = () => openSessions();
+  btn.onclick = () => openMoreDates(moreDates);
   return btn;
 }
 
@@ -383,7 +396,7 @@ function renderShows() {
       const datesRow = document.createElement('div');
       datesRow.className = 'flex flex-wrap gap-2';
       (show.dates || []).forEach(d => datesRow.appendChild(buildDateBtn(d)));
-      if (show.moreDates) datesRow.appendChild(buildMoreDatesBtn());
+      if (show.moreDates) datesRow.appendChild(buildMoreDatesBtn(show.moreDates));
       body.appendChild(datesRow);
     } else if (isSoon) {
       const notice = document.createElement('div');

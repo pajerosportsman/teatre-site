@@ -176,24 +176,21 @@
     </div>
   </section>
 
-  <!-- Gift Certificate -->
-  <section id="gift" class="py-16">
-    <div class="max-w-4xl mx-auto px-4">
-      <div class="bg-red-600 text-white rounded-2xl p-10 text-center shadow-xl">
-        <h2 class="text-3xl font-bold mb-4">Подарочный сертификат</h2>
-        <p class="mb-6 text-lg">
-          Подарите близким незабываемые эмоции — выберите номинал сертификата и оформите покупку онлайн.
-        </p>
-        <button class="bg-white text-red-600 font-semibold py-3 px-6 rounded-xl hover:bg-gray-200 transition">
-          Купить сертификат
-        </button>
+  <!-- Gift Modal -->
+  <div id="giftModal" class="fixed inset-0 z-50 flex items-center justify-center p-4" style="display: none !important;">
+    <div class="absolute inset-0 bg-black bg-opacity-70" onclick="closeGiftModal()"></div>
+    <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl overflow-hidden" style="height: 700px;">
+      <div class="flex items-center justify-between bg-black text-white px-6 py-4">
+        <span class="text-lg font-semibold">Подарочный сертификат</span>
+        <button onclick="closeGiftModal()" class="text-gray-400 hover:text-white transition text-2xl leading-none" aria-label="Закрыть">×</button>
       </div>
+      <iframe id="giftIframe" src="" class="w-full" style="height: calc(700px - 60px); border: none;" allow="payment"></iframe>
     </div>
-  </section>
+  </div>
 
   <!-- Footer -->
   <footer class="bg-black text-white py-6 text-center">
-    <p>© 2026 Театр "Гармония". Все права защищены.</p>
+    <p>© 2026 Театр "Афишинг". Все права защищены.</p>
   </footer>
 
 <script>
@@ -439,6 +436,25 @@ function init() {
 }
 
 document.addEventListener('DOMContentLoaded', init);
+</script>
+<script>
+    function openGiftModal() {
+      var modal = document.getElementById('giftModal');
+      var iframe = document.getElementById('giftIframe');
+      iframe.src = 'https://tickets.afisha.ru/wl/1691/api#/gift_card';
+      modal.style.setProperty('display', 'flex', 'important');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeGiftModal() {
+      var modal = document.getElementById('giftModal');
+      var iframe = document.getElementById('giftIframe');
+      modal.style.setProperty('display', 'none', 'important');
+      iframe.src = '';
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeGiftModal();
+    });
 </script>
 
 </body>
